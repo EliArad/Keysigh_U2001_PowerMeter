@@ -15,7 +15,7 @@ namespace KeysightU2001App
 {
     public partial class PowerMeterControl : UserControl
     {
-        U2021XAIVI m_pm;
+        U2021XAIVI m_pm = null;
         string m_visaName;
         public PowerMeterControl()
         {
@@ -26,6 +26,7 @@ namespace KeysightU2001App
             m_visaName = visaName;
             textBox1.Text = visaName;
         }
+        Task process = null;
         void LoadControl(string visaName, Action<bool, string> cb)
         {
             Task.Run(() =>
@@ -53,11 +54,16 @@ namespace KeysightU2001App
         public void Close()
         {
             m_running = false;
-            Task t = Task.Run(() =>
+            if (process != null)
+                process.Wait();
+
+            if (m_pm != null)
             {
-                m_pm.Close();
-            });
-            t.Wait();
+                Task t = Task.Run(() =>
+                {
+                    m_pm.Close();
+                });                 
+            }
         }
         bool m_running = false;
         private void btnStart_Click(object sender, EventArgs e)
@@ -71,13 +77,16 @@ namespace KeysightU2001App
                 else
                 {
                     m_running = true;
-                    Task.Run(() =>
+                    process = Task.Run(() =>
                     {
                         while (m_running)
                         {
-                            double power = m_pm.Measure();
-                            InvokeControlText(lblPower, power.ToString("0.0000"));
-                            Thread.Sleep(10);
+                            double power = m_pm.Measure(out bool ok);
+                            if (ok == true)
+                            {
+                                InvokeControlText(lblPower, power.ToString("0.0000"));
+                            }
+                            Thread.Sleep(10);                            
                         }
                     });
                 }

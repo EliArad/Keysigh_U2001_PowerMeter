@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,6 +39,7 @@ namespace KeysightU2001App
             powerMeterControl3.Close();
             powerMeterControl4.Close();
             powerMeterControl5.Close();
+            Thread.Sleep(500);
         }
     }
 }

@@ -111,12 +111,22 @@ namespace U2021XALib
             return data;
         }
 
-        public double Measure()
+        public double Measure(out bool ok)
         { 
 
             if (m_continues == false)
                 Initiate();
-            double data = Measurement.Fetch(1000);
+            double data = 0;
+            ok = false;
+            try
+            {
+                data = Measurement.Fetch(1000);
+                ok = true;
+            }
+            catch (Exception err)
+            {
+
+            }
             return data;
         }
 
