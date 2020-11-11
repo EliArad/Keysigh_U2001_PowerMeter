@@ -15,24 +15,34 @@ namespace KeysightU2001App
 {
     public partial class PowerMeterControl : UserControl
     {
+        public enum CONTYPE
+        {
+            SCPI,
+            IVI
+        }
+
         IPowerMeter m_pm = null;
         string m_visaName;
         public PowerMeterControl()
         {
             InitializeComponent();
         }
-        public void Setup(string visaName)
+        CONTYPE m_contype = CONTYPE.IVI;
+        public void Setup(string visaName, CONTYPE contype)
         {
             m_visaName = visaName;
             textBox1.Text = visaName;
+            m_contype = contype;
         }
         Task process = null;
         void LoadControl(string visaName, Action<bool, string> cb)
         {
             Task.Run(() =>
             {
-                //m_pm = new U2021XAIVI(visaName);
-                m_pm = new U2001Scpi(visaName);
+                if (m_contype == CONTYPE.IVI)
+                    m_pm = new U2021XAIVI(visaName);
+                else 
+                    m_pm = new U2001Scpi(visaName);
                 bool b = m_pm.Initialize(out string outMessage, out IIviDriverIdentity identity);
                 cb(b, outMessage);
             });           

@@ -24,11 +24,11 @@ namespace KeysightU2001App
         {
             InitializeComponent();
 
-            powerMeterControl1.Setup(pmKeysigthList[0]);
-            powerMeterControl2.Setup(pmKeysigthList[1]);
-            powerMeterControl3.Setup(pmKeysigthList[2]);
-            powerMeterControl4.Setup(pmKeysigthList[3]);
-            powerMeterControl5.Setup(pmKeysigthList[4]);
+            powerMeterControl1.Setup(pmKeysigthList[0], rbIVI.Checked == true ? PowerMeterControl.CONTYPE.IVI : PowerMeterControl.CONTYPE.SCPI);
+            powerMeterControl2.Setup(pmKeysigthList[1], rbIVI.Checked == true ? PowerMeterControl.CONTYPE.IVI : PowerMeterControl.CONTYPE.SCPI);
+            powerMeterControl3.Setup(pmKeysigthList[2], rbIVI.Checked == true ? PowerMeterControl.CONTYPE.IVI : PowerMeterControl.CONTYPE.SCPI);
+            powerMeterControl4.Setup(pmKeysigthList[3], rbIVI.Checked == true ? PowerMeterControl.CONTYPE.IVI : PowerMeterControl.CONTYPE.SCPI);
+            powerMeterControl5.Setup(pmKeysigthList[4], rbIVI.Checked == true ? PowerMeterControl.CONTYPE.IVI : PowerMeterControl.CONTYPE.SCPI);
 
         }
 

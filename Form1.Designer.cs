@@ -28,12 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.rbIVI = new System.Windows.Forms.RadioButton();
+            this.rbSCPI = new System.Windows.Forms.RadioButton();
+            this.powerMeterControl5 = new KeysightU2001App.PowerMeterControl();
             this.powerMeterControl4 = new KeysightU2001App.PowerMeterControl();
             this.powerMeterControl3 = new KeysightU2001App.PowerMeterControl();
             this.powerMeterControl2 = new KeysightU2001App.PowerMeterControl();
             this.powerMeterControl1 = new KeysightU2001App.PowerMeterControl();
-            this.powerMeterControl5 = new KeysightU2001App.PowerMeterControl();
             this.SuspendLayout();
+            // 
+            // rbIVI
+            // 
+            this.rbIVI.AutoSize = true;
+            this.rbIVI.Checked = true;
+            this.rbIVI.Location = new System.Drawing.Point(26, 517);
+            this.rbIVI.Name = "rbIVI";
+            this.rbIVI.Size = new System.Drawing.Size(38, 17);
+            this.rbIVI.TabIndex = 5;
+            this.rbIVI.TabStop = true;
+            this.rbIVI.Text = "IVI";
+            this.rbIVI.UseVisualStyleBackColor = true;
+            // 
+            // rbSCPI
+            // 
+            this.rbSCPI.AutoSize = true;
+            this.rbSCPI.Location = new System.Drawing.Point(106, 516);
+            this.rbSCPI.Name = "rbSCPI";
+            this.rbSCPI.Size = new System.Drawing.Size(49, 17);
+            this.rbSCPI.TabIndex = 6;
+            this.rbSCPI.Text = "SCPI";
+            this.rbSCPI.UseVisualStyleBackColor = true;
+            // 
+            // powerMeterControl5
+            // 
+            this.powerMeterControl5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.powerMeterControl5.Location = new System.Drawing.Point(12, 420);
+            this.powerMeterControl5.Name = "powerMeterControl5";
+            this.powerMeterControl5.Size = new System.Drawing.Size(672, 90);
+            this.powerMeterControl5.TabIndex = 4;
             // 
             // powerMeterControl4
             // 
@@ -67,19 +99,13 @@
             this.powerMeterControl1.Size = new System.Drawing.Size(672, 90);
             this.powerMeterControl1.TabIndex = 0;
             // 
-            // powerMeterControl5
-            // 
-            this.powerMeterControl5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.powerMeterControl5.Location = new System.Drawing.Point(12, 420);
-            this.powerMeterControl5.Name = "powerMeterControl5";
-            this.powerMeterControl5.Size = new System.Drawing.Size(672, 90);
-            this.powerMeterControl5.TabIndex = 4;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 533);
+            this.Controls.Add(this.rbSCPI);
+            this.Controls.Add(this.rbIVI);
             this.Controls.Add(this.powerMeterControl5);
             this.Controls.Add(this.powerMeterControl4);
             this.Controls.Add(this.powerMeterControl3);
@@ -89,6 +115,7 @@
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -99,6 +126,8 @@
         private PowerMeterControl powerMeterControl3;
         private PowerMeterControl powerMeterControl4;
         private PowerMeterControl powerMeterControl5;
+        private System.Windows.Forms.RadioButton rbIVI;
+        private System.Windows.Forms.RadioButton rbSCPI;
     }
 }
 
