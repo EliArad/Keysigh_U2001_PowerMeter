@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace U2021XALib
 {
-    public class U2021XAIVI
+    public class U2021XAIVI : IPowerMeter
     {
-        string m_resourceDesc;
+      
         KtRFPowerMeter driver = null;
         KtRFPowerMeterChannel ChannelA = null;
         KtRFPowerMeterChannel ChannelB = null;
         KtRFPowerMeterMeasurement Measurement = null;
         bool m_continues = false;
 
-        public U2021XAIVI(string visaAddress)
+        public U2021XAIVI(string visaAddress) : base(visaAddress)
         {
-            m_resourceDesc = visaAddress;
+            
         }
 
-        public bool Initialize(out string outMessage, out IIviDriverIdentity identity)
+        public override bool Initialize(out string outMessage, out IIviDriverIdentity identity)
         {
 
             identity = null;
@@ -111,7 +111,7 @@ namespace U2021XALib
             return data;
         }
 
-        public double Measure(out bool ok)
+        public override double Measure(out bool ok)
         { 
 
             if (m_continues == false)
@@ -138,7 +138,7 @@ namespace U2021XALib
             return data;
         }
 
-        public void Close()
+        public override void Close()
         {
             if (driver != null && driver.Initialized)
             {
@@ -148,5 +148,9 @@ namespace U2021XALib
             }
         }
 
+        public override void SetFrequency(double freqInHz)
+        {
+
+        }
     }
 }

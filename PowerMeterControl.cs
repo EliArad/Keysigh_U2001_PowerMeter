@@ -15,7 +15,7 @@ namespace KeysightU2001App
 {
     public partial class PowerMeterControl : UserControl
     {
-        U2021XAIVI m_pm = null;
+        IPowerMeter m_pm = null;
         string m_visaName;
         public PowerMeterControl()
         {
@@ -31,7 +31,8 @@ namespace KeysightU2001App
         {
             Task.Run(() =>
             {
-                m_pm = new U2021XAIVI(visaName);
+                //m_pm = new U2021XAIVI(visaName);
+                m_pm = new U2001Scpi(visaName);
                 bool b = m_pm.Initialize(out string outMessage, out IIviDriverIdentity identity);
                 cb(b, outMessage);
             });           
